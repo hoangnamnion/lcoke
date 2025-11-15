@@ -3,620 +3,684 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nâng cấp Locket Gold iOS</title>
-  <meta name="theme-color" content="#020617" />
+  <title>Locket Gold iOS – Hoàng Nam</title>
+  <meta name="description" content="Nâng cấp Locket Gold iOS 59K dùng vĩnh viễn, bảo hành trọn đời thiết bị. Hỗ trợ đổi máy, cấu hình Shadowrocket, chứng chỉ Locket Gold, quà tặng chặn quảng cáo." />
+  <meta name="theme-color" content="#050816" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#020617;
-      --card:#020617cc;
-      --card-border:#1f2937;
-      --text:#e5e7eb;
-      --muted:#9ca3af;
-      --accent:#fbbf24;
-      --accent-soft:#f97316;
-      --danger:#ef4444;
-      --btn-bg:#111827;
-      --btn-hover:#1f2937;
-      --radius:18px;
+      --bg:#050816;
+      --bg2:#0b1220;
+      --text:#e5ecff;
+      --muted:#9ca3c7;
+      --accent:#38bdf8;
+      --accent2:#a855f7;
+      --danger:#f97373;
+      --card:#050816e6;
+      --border:#1f2937;
+      --success:#22c55e;
     }
+
     *{
-      box-sizing:border-box;
       margin:0;
       padding:0;
+      box-sizing:border-box;
     }
+
     body{
-      min-height:100vh;
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background: radial-gradient(circle at top,#1e293b 0,#020617 55%,#000 100%);
       color:var(--text);
-      background:
-        radial-gradient(circle at 0% 0%, #1d4ed8 0, transparent 55%),
-        radial-gradient(circle at 100% 0%, #f97316 0, transparent 55%),
-        radial-gradient(circle at 0% 100%, #22c55e 0, transparent 55%),
-        radial-gradient(circle at 100% 100%, #e11d48 0, transparent 55%),
-        radial-gradient(circle at 50% 20%, #7c3aed55 0, transparent 60%),
-        #020617;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
       overflow:hidden;
     }
-    .snowflake{
+
+    /* Nền đèn mờ */
+    .glow-bg::before,
+    .glow-bg::after{
+      content:"";
       position:fixed;
-      top:-10px;
-      width:6px;
-      height:6px;
-      background:rgba(255,255,255,.85);
-      border-radius:50%;
+      inset:auto;
+      width:420px;
+      height:420px;
+      border-radius:999px;
+      filter:blur(80px);
+      opacity:0.7;
+      z-index:-2;
+    }
+    .glow-bg::before{
+      background:radial-gradient(circle,#38bdf8,#1d4ed8);
+      top:-120px;
+      left:-80px;
+    }
+    .glow-bg::after{
+      background:radial-gradient(circle,#a855f7,#f97316);
+      bottom:-120px;
+      right:-80px;
+    }
+
+    /* Tuyết rơi */
+    .snow{
       pointer-events:none;
-      filter:blur(.3px);
-      z-index:1;
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+    .snowflake{
+      position:absolute;
+      top:-10px;
+      font-size:8px;
+      opacity:0.7;
       animation-name:fall;
       animation-timing-function:linear;
       animation-iteration-count:infinite;
     }
     @keyframes fall{
-      to{
-        transform:translateY(110vh);
-        opacity:0;
+      0%{
+        transform:translate3d(var(--x-start),-10px,0) rotate(0deg);
+      }
+      100%{
+        transform:translate3d(var(--x-end),110vh,0) rotate(360deg);
       }
     }
-    .overlay{
-      position:fixed;
-      inset:0;
+
+    /* Card chính */
+    .wrapper{
+      width:100%;
+      max-width:480px;
+      position:relative;
+      z-index:1;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,0.35);
+      padding:20px 18px 18px;
+      box-shadow:
+        0 25px 50px rgba(15,23,42,0.9),
+        0 0 0 1px rgba(15,23,42,0.7);
+      backdrop-filter:blur(18px);
+    }
+
+    .card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .title{
+      font-size:1.1rem;
+      font-weight:700;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+    .badge{
+      font-size:11px;
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.6);
+      background:linear-gradient(135deg,rgba(56,189,248,0.12),rgba(168,85,247,0.06));
+      color:var(--accent);
+      font-weight:500;
+      white-space:nowrap;
+    }
+
+    .price-row{
+      display:flex;
+      align-items:baseline;
+      gap:6px;
+      margin-bottom:6px;
+    }
+    .price{
+      font-size:1.7rem;
+      font-weight:700;
+      color:var(--accent);
+    }
+    .price span{
+      font-size:.9rem;
+      font-weight:500;
+      color:var(--muted);
+    }
+    .subtitle{
+      font-size:.83rem;
+      color:var(--muted);
+      line-height:1.4;
+      margin-bottom:12px;
+    }
+    .subtitle strong{
+      color:#e5ecff;
+      font-weight:600;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.8rem;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px dashed rgba(148,163,184,0.6);
+      margin-bottom:16px;
+    }
+    .pill-dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:var(--success);
+      box-shadow:0 0 8px rgba(34,197,94,0.8);
+    }
+
+    .section{
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:radial-gradient(circle at top left,rgba(56,189,248,0.16),transparent 55%);
+      padding:12px 12px 10px;
+      margin-bottom:10px;
+    }
+    .section h2{
+      font-size:.9rem;
+      font-weight:600;
+      margin-bottom:6px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:6px;
+    }
+    .section h2 span{
+      font-size:.7rem;
+      color:var(--muted);
+      font-weight:500;
+    }
+    .section p{
+      font-size:.82rem;
+      color:var(--muted);
+      line-height:1.45;
+    }
+    .section p strong{
+      color:#e5ecff;
+      font-weight:600;
+    }
+
+    .pill-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:6px;
+    }
+    .pill-tag{
+      font-size:.73rem;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.4);
+      color:var(--muted);
+      background:rgba(15,23,42,0.9);
+    }
+
+    /* Buttons */
+    .btn-group{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:8px;
+    }
+    .btn{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:16px;
-      z-index:30;
-      background:rgba(0,0,0,.82);
-      backdrop-filter:blur(12px);
-    }
-    .overlay-card{
-      width:100%;
-      max-width:420px;
-      background:#020617;
-      border:1px solid #4b5563;
-      border-radius:var(--radius);
-      padding:20px 18px 18px;
-      text-align:center;
-      box-shadow:0 24px 80px rgba(0,0,0,.7);
-    }
-    .overlay-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px;
+      gap:8px;
       border-radius:999px;
-      font-size:11px;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      color:#fbbf24;
-      background:rgba(15,23,42,.9);
-      border:1px solid rgba(148,163,184,.6);
-      margin-bottom:10px;
+      border:1px solid transparent;
+      padding:9px 12px;
+      font-size:.86rem;
+      font-weight:500;
+      cursor:pointer;
+      text-decoration:none;
+      transition:.18s ease-out;
+      white-space:nowrap;
     }
-    .overlay-title{
-      font-size:18px;
+    .btn span.small{
+      font-size:.7rem;
+      opacity:.8;
+      font-weight:400;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#38bdf8,#6366f1);
+      color:#0b1120;
+      box-shadow:0 15px 35px rgba(56,189,248,0.4);
+    }
+    .btn-primary:hover{
+      filter:brightness(1.08);
+      transform:translateY(-1px);
+      box-shadow:0 18px 40px rgba(56,189,248,0.55);
+    }
+    .btn-outline{
+      background:rgba(15,23,42,0.9);
+      color:var(--text);
+      border-color:rgba(148,163,184,0.6);
+    }
+    .btn-outline:hover{
+      border-color:var(--accent);
+      background:radial-gradient(circle at top,rgba(56,189,248,0.15),rgba(15,23,42,0.96));
+    }
+    .btn-soft{
+      background:rgba(15,23,42,0.95);
+      color:var(--accent);
+      border-color:rgba(56,189,248,0.5);
+    }
+    .btn-soft:hover{
+      background:rgba(15,23,42,1);
+      box-shadow:0 12px 30px rgba(56,189,248,0.35);
+    }
+    .btn-danger{
+      background:rgba(127,29,29,0.9);
+      color:#fee2e2;
+      border-color:rgba(248,113,113,0.8);
+    }
+    .btn-danger:hover{
+      background:rgba(153,27,27,1);
+      box-shadow:0 12px 28px rgba(248,113,113,0.5);
+    }
+
+    .btn-icon{
+      font-size:1rem;
+      line-height:1;
+    }
+
+    .row-2{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin-top:8px;
+    }
+
+    .helper-text{
+      font-size:.72rem;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.4;
+    }
+
+    .footer{
+      margin-top:10px;
+      font-size:.72rem;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:20px;
+      transform:translateX(-50%) translateY(120%);
+      background:#020617;
+      color:#e5ecff;
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:.78rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(148,163,184,0.7);
+      box-shadow:0 15px 35px rgba(15,23,42,0.9);
+      opacity:0;
+      transition:.22s ease-out;
+      z-index:50;
+    }
+    .toast.show{
+      transform:translateX(-50%) translateY(0);
+      opacity:1;
+    }
+    .toast-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--success);
+      box-shadow:0 0 8px rgba(34,197,94,0.8);
+    }
+
+    /* Overlay cảnh báo Messenger */
+    .messenger-overlay{
+      position:fixed;
+      inset:0;
+      background:radial-gradient(circle at top,#020617,#020617 40%,#020617 100%);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:26px 18px;
+      z-index:40;
+      text-align:center;
+      color:var(--text);
+    }
+    .messenger-card{
+      max-width:420px;
+    }
+    .messenger-icon{
+      width:60px;
+      height:60px;
+      border-radius:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 14px;
+      background:radial-gradient(circle,#38bdf8,#6366f1);
+      box-shadow:0 18px 40px rgba(37,99,235,0.7);
+      font-size:1.5rem;
+    }
+    .messenger-title{
+      font-size:1.05rem;
       font-weight:700;
       margin-bottom:8px;
     }
-    .overlay-text{
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.5;
-      margin-bottom:14px;
-    }
-    .overlay-steps{
-      text-align:left;
-      font-size:13px;
-      color:var(--muted);
-      margin-bottom:18px;
-    }
-    .overlay-steps li{
-      margin-left:18px;
-      margin-bottom:4px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      width:100%;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid #fbbf24;
-      background:linear-gradient(135deg,#fbbf24,#f97316);
-      color:#111827;
-      font-size:14px;
-      font-weight:600;
-      text-decoration:none;
-      cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-      box-shadow:0 10px 30px rgba(251,191,36,.45);
-    }
-    .btn span.icon{
-      font-size:16px;
-    }
-    .btn:active{
-      transform:scale(.97) translateY(1px);
-      box-shadow:0 6px 18px rgba(251,191,36,.35);
-      opacity:.9;
-    }
-
-    .page{
-      position:relative;
-      z-index:2;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px 12px 26px;
-    }
-    .card{
-      width:100%;
-      max-width:520px;
-      background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(3,7,18,.98));
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,.45);
-      padding:18px 16px 18px;
-      box-shadow:
-        0 18px 50px rgba(0,0,0,.85),
-        0 0 0 1px rgba(15,23,42,.9);
-      backdrop-filter:blur(18px);
-    }
-    @media (min-width:480px){
-      .card{padding:20px 18px 20px;}
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      background:rgba(34,197,94,.08);
-      color:#bbf7d0;
-      border:1px solid rgba(34,197,94,.4);
-      margin-bottom:6px;
-    }
-    .badge-dot{
-      width:6px;
-      height:6px;
-      border-radius:999px;
-      background:#22c55e;
-      box-shadow:0 0 12px #22c55e;
-    }
-    .title{
-      font-size:20px;
-      font-weight:800;
-      margin-bottom:6px;
-    }
-    .subtitle{
-      font-size:13px;
+    .messenger-text{
+      font-size:.85rem;
       color:var(--muted);
       line-height:1.5;
       margin-bottom:12px;
     }
-    .price-row{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      padding:10px 10px;
-      border-radius:18px;
-      background:radial-gradient(circle at 0 0,#22c55e22 0,transparent 65%), #020617;
-      border:1px solid rgba(148,163,184,.5);
-      margin-bottom:10px;
+    .messenger-steps{
+      font-size:.82rem;
+      text-align:left;
+      margin:0 auto 16px;
+      max-width:380px;
+      color:var(--muted);
     }
-    .price-main{
-      font-size:18px;
-      font-weight:800;
-      color:#fbbf24;
+    .messenger-steps li{
+      margin-bottom:3px;
     }
-    .price-main span{
-      font-size:13px;
-      font-weight:600;
-      color:#e5e7eb;
-      margin-left:4px;
-    }
-    .price-sub{
-      font-size:12px;
-      color:#9ca3af;
-    }
-    .pill{
+    .badge-mess{
       display:inline-flex;
       align-items:center;
       gap:6px;
+      font-size:.72rem;
       padding:4px 8px;
       border-radius:999px;
-      font-size:11px;
-      color:#fee2e2;
-      background:rgba(248,113,113,.1);
-      border:1px solid rgba(248,113,113,.45);
+      border:1px solid rgba(148,163,184,0.7);
+      background:rgba(15,23,42,0.95);
+      color:var(--accent);
+      margin-bottom:8px;
     }
-    .section-label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      color:#6b7280;
-      margin:10px 2px 4px;
+
+    @media (max-width:380px){
+      .card{
+        padding:16px 14px 14px;
+        border-radius:20px;
+      }
+      .title{
+        font-size:1rem;
+      }
+      .price{
+        font-size:1.45rem;
+      }
     }
-    .copy-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      margin-bottom:6px;
-    }
-    .copy-info{
-      flex:1;
-      min-width:0;
-    }
-    .copy-title{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:#9ca3af;
-      margin-bottom:2px;
-    }
-    .copy-value{
-      font-size:13px;
-      font-weight:600;
-      color:#e5e7eb;
-      word-break:break-all;
-    }
-    .copy-btn{
-      flex-shrink:0;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid #4b5563;
-      background:rgba(15,23,42,.9);
-      color:#e5e7eb;
-      font-size:11px;
-      font-weight:500;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      transition:background .12s ease, transform .1s ease, border-color .12s ease;
-    }
-    .copy-btn span.icon{
-      font-size:13px;
-    }
-    .copy-btn:active{
-      transform:scale(.96) translateY(1px);
-      background:#111827;
-      border-color:#9ca3af;
-    }
-    .copy-hint{
-      font-size:11px;
-      color:#6b7280;
-      margin:0 2px 8px;
-    }
-    .btn-group{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      margin-top:2px;
-    }
-    .btn-secondary{
-      width:100%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid #4b5563;
-      background:rgba(15,23,42,.96);
-      color:#e5e7eb;
-      font-size:12px;
-      text-decoration:none;
-      cursor:pointer;
-      transition:background .12s ease, transform .1s ease, border-color .12s ease;
-    }
-    .btn-secondary-main{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap:1px;
-    }
-    .btn-secondary-label{
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:#9ca3af;
-    }
-    .btn-secondary-title{
-      font-size:13px;
-      font-weight:600;
-    }
-    .btn-secondary-right{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:2px;
-      font-size:11px;
-      color:#9ca3af;
-    }
-    .btn-secondary:active{
-      transform:scale(.97) translateY(1px);
-      background:#020617;
-      border-color:#9ca3af;
-    }
-    .btn-secondary-badge{
-      padding:1px 6px;
-      border-radius:999px;
-      border:1px solid #fbbf24;
-      font-size:10px;
-      color:#fbbf24;
-    }
-    .btn-secondary-icon{
-      font-size:14px;
-    }
-    .tiny{
-      font-size:10px;
-      color:#4b5563;
-      text-align:center;
-      margin-top:6px;
-    }
-    .hidden{display:none;}
   </style>
 </head>
-<body>
+<body class="glow-bg">
 
-  <!-- Cảnh báo nếu đang mở trong web Messenger / Facebook in-app -->
-  <div id="messengerWarning" class="overlay hidden">
-    <div class="overlay-card">
-      <div class="overlay-pill">
-        <span class="icon">⚠️</span>
-        Đang mở trong Messenger
+  <!-- Tuyết rơi -->
+  <div class="snow" id="snow"></div>
+
+  <!-- Overlay nếu mở trong Messenger -->
+  <div class="messenger-overlay" id="messengerOverlay" style="display:none;">
+    <div class="messenger-card">
+      <div class="messenger-icon">🌐</div>
+      <div class="badge-mess">
+        <span>⚠️</span> <span>Đang mở trong Messenger</span>
       </div>
-      <div class="overlay-title">Hãy mở trang này bằng Safari</div>
-      <div class="overlay-text">
-        Để cài <strong>Locket Gold, Shadowrocket, cấu hình &amp; chứng chỉ</strong> an toàn,
-        bạn cần mở link bằng <strong>Safari (trình duyệt gốc của iPhone)</strong>.
-      </div>
-      <ul class="overlay-steps">
-        <li>Nhấn nút <strong>"Mở bằng Safari"</strong> bên dưới.</li>
-        <li>Nếu không tự thoát, nhấn biểu tượng <strong>Safari</strong> ở góc trên.</li>
-        <li>Sau khi mở trong Safari, kéo xuống để bấm các nút cài đặt.</li>
-      </ul>
-      <button id="openSafariBtn" class="btn" type="button">
-        <span class="icon">🌐</span>
-        <span>Mở bằng Safari ngay</span>
+      <h1 class="messenger-title">Hãy mở trang này bằng Safari</h1>
+      <p class="messenger-text">
+        Để cài Locket Gold & cấu hình hoạt động ổn định, vui lòng mở lại trang này bằng <strong>Safari</strong>.
+      </p>
+      <ol class="messenger-steps">
+        <li>Nhấn vào <strong>⋯</strong> (ba chấm) góc trên bên phải Messenger.</li>
+        <li>Chọn <strong>"Mở bằng trình duyệt"</strong> hoặc <strong>"Open in Safari"</strong>.</li>
+        <li>Nếu thấy nút dưới đây hoạt động, bạn cũng có thể ấn để thử mở bằng Safari.</li>
+      </ol>
+      <button class="btn btn-primary" id="openSafariBtn">
+        <span class="btn-icon">🧭</span>
+        <span>Mở bằng Safari</span>
       </button>
-      <p class="tiny" style="margin-top:8px;">
-        Nếu nút không tự bật ra Safari, hãy copy link &amp; dán trực tiếp vào Safari.
+      <p class="helper-text" style="margin-top:10px;">
+        Nếu nút không tự bật Safari, hãy làm theo 3 bước phía trên để mở tay nhé.
       </p>
     </div>
   </div>
 
-  <div class="page">
+  <!-- Nội dung chính -->
+  <div class="wrapper">
     <main class="card">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Locket Gold iOS • Hoàng Nam
-      </div>
-
-      <h1 class="title">Nâng cấp Locket Gold iOS</h1>
-      <p class="subtitle">
-        Bản nâng cấp vĩnh viễn, dùng trọn đời trên thiết bị, hỗ trợ cài đặt A–Z.
-        Đổi sang iPhone mới chỉ cần bù <strong>20.000&nbsp;VNĐ</strong>.
-      </p>
+      <header class="card-header">
+        <div>
+          <div class="title">Locket Gold iOS</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-top:2px;">
+            Hoàng Nam • Bảo hành trọn đời thiết bị
+          </div>
+        </div>
+        <div class="badge">Nâng cấp VIP 1 lần duy nhất</div>
+      </header>
 
       <div class="price-row">
-        <div>
-          <div class="price-main">
-            59.000&nbsp;VNĐ
-            <span>/ vĩnh viễn</span>
-          </div>
-          <div class="price-sub">
-            Bảo hành trọn đời thiết bị &bull; Hỗ trợ cài qua Zalo / Messenger
-          </div>
-        </div>
-        <div class="pill">
-          🔐 Locket Gold chính chủ
-        </div>
+        <div class="price">59.000đ <span>/ vĩnh viễn</span></div>
+      </div>
+      <p class="subtitle">
+        Nâng cấp <strong>Locket Gold iOS</strong> dùng vĩnh viễn, <strong>bảo hành trọn đời thiết bị</strong>.
+        Khi <strong>đổi sang iPhone mới</strong> chỉ cần bù thêm <strong>20.000đ</strong> để kích hoạt lại.
+      </p>
+
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span>Bảo hành full lỗi app, cấu hình, chứng chỉ – hỗ trợ cài đặt từ xa.</span>
       </div>
 
       <!-- Tài khoản & mật khẩu -->
-      <div class="section-label">Thông tin đăng nhập</div>
-
-      <div class="copy-row">
-        <div class="copy-info">
-          <div class="copy-title">Tài khoản</div>
-          <div id="accountValue" class="copy-value">
-            locketgold_hoangnam@example.com
-          </div>
+      <section class="section">
+        <h2>
+          Tài khoản &amp; Mật khẩu
+          <span>Nhấn để sao chép</span>
+        </h2>
+        <p>
+          Dùng thông tin dưới đây để đăng nhập App Store / iCloud theo hướng dẫn từ Nam.
+        </p>
+        <div class="btn-group">
+          <button class="btn btn-outline" data-copy="hoangnamnion@gmail.com">
+            <span class="btn-icon">📧</span>
+            <span>Sao chép tài khoản</span>
+          </button>
+          <button class="btn btn-outline" data-copy="Caovnnm2005@">
+            <span class="btn-icon">🔐</span>
+            <span>Sao chép mật khẩu</span>
+          </button>
         </div>
-        <button class="copy-btn" data-copy-target="accountValue" type="button">
-          <span class="icon">📋</span>
-          <span>Sao chép</span>
-        </button>
-      </div>
+        <p class="helper-text">
+          Sau khi sao chép, dán vào nơi cần đăng nhập. Không chia sẻ tài khoản/mật khẩu cho người lạ.
+        </p>
+      </section>
 
-      <div class="copy-row">
-        <div class="copy-info">
-          <div class="copy-title">Mật khẩu</div>
-          <div id="passwordValue" class="copy-value">
-            LocketGold@2025
-          </div>
+      <!-- Tải ứng dụng -->
+      <section class="section">
+        <h2>
+          Bước 1 – Tải ứng dụng
+          <span>App Store + Locket</span>
+        </h2>
+        <p>Tải đủ 2 ứng dụng bên dưới trước khi cấu hình Shadowrocket &amp; Locket Gold.</p>
+        <div class="btn-group">
+          <a class="btn btn-soft"
+             href="https://apps.apple.com/vn/app/shadowrocket/id932747118?l=vi"
+             target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">☁️</span>
+            <span>Tải Shadowrocket</span>
+            <span class="small">App Store Việt Nam</span>
+          </a>
+          <a class="btn btn-soft"
+             href="https://authtool.app/app-store/koirJ6SQTu/"
+             target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">📸</span>
+            <span>Tải ứng dụng Locket</span>
+            <span class="small">Locket Widget gốc</span>
+          </a>
         </div>
-        <button class="copy-btn" data-copy-target="passwordValue" type="button">
-          <span class="icon">📋</span>
-          <span>Sao chép</span>
-        </button>
-      </div>
+        <div class="pill-list">
+          <span class="pill-tag">⚙️ Cần iOS 14 trở lên</span>
+          <span class="pill-tag">📶 Kết nối Wi-Fi ổn định</span>
+        </div>
+      </section>
 
-      <p class="copy-hint">
-        Bạn có thể sửa lại tài khoản / mật khẩu trực tiếp trong file HTML cho mỗi khách hàng.
-      </p>
+      <!-- Cấu hình Shadowrocket & chứng chỉ -->
+      <section class="section">
+        <h2>
+          Bước 2 – Cấu hình nhanh
+          <span>Shadowrocket + chứng chỉ</span>
+        </h2>
+        <p>
+          Sau khi cài app, lần lượt nhấn các nút bên dưới để cài <strong>module</strong>, <strong>config</strong> Shadowrocket
+          và <strong>chứng chỉ Locket Gold</strong>.
+        </p>
 
-      <!-- Nút tải app -->
-      <div class="section-label">Bước 1 &bull; Tải ứng dụng bắt buộc</div>
+        <div class="btn-group">
+          <a class="btn btn-primary"
+             href="shadowrocket://install?module=https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/locketGoldmodule">
+            <span class="btn-icon">💾</span>
+            <span>Cài module Shadowrocket</span>
+          </a>
 
-      <div class="btn-group">
-        <a class="btn-secondary" href="https://apps.apple.com/vn/app/shadowrocket/id932747118?l=vi" target="_blank" rel="noopener">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">Bắt buộc</span>
-            <span class="btn-secondary-title">Tải Shadowrocket trên App Store</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span class="btn-secondary-badge">VPN / Proxy</span>
-            <span class="btn-secondary-icon">➡️</span>
-          </div>
-        </a>
+          <a class="btn btn-primary"
+             href="shadowrocket://config/add/https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/LocketGold_HoangNam">
+            <span class="btn-icon">📡</span>
+            <span>Thêm cấu hình Locket Gold</span>
+          </a>
 
-        <a class="btn-secondary" href="https://authtool.app/app-store/koirJ6SQTu/" target="_blank" rel="noopener">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">Ứng dụng chính</span>
-            <span class="btn-secondary-title">Tải ứng dụng Locket (chính chủ)</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span>App Store link</span>
-            <span class="btn-secondary-icon">📲</span>
-          </div>
-        </a>
-      </div>
+          <a class="btn btn-outline"
+             href="http://webhoangnam.id.vn/Configuration/locketgoldhn.crt"
+             target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">📜</span>
+            <span>Cài chứng chỉ Locket Gold</span>
+          </a>
+        </div>
 
-      <!-- Nút Shadowrocket & cấu hình -->
-      <div class="section-label">Bước 2 &bull; Cài Locket Gold cho Shadowrocket</div>
-
-      <div class="btn-group">
-        <a class="btn-secondary" href="shadowrocket://install?module=https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/locketGoldmodule">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">1. Cài module</span>
-            <span class="btn-secondary-title">Cài đặt module Locket Gold</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span>shadowrocket://install</span>
-            <span class="btn-secondary-icon">⚙️</span>
-          </div>
-        </a>
-
-        <a class="btn-secondary" href="shadowrocket://config/add/https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/LocketGold_HoangNam">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">2. Thêm cấu hình</span>
-            <span class="btn-secondary-title">Thêm config Locket Gold • Hoàng Nam</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span>shadowrocket://config/add</span>
-            <span class="btn-secondary-icon">📡</span>
-          </div>
-        </a>
-
-        <a class="btn-secondary" href="http://webhoangnam.id.vn/Configuration/locketgoldhn.crt">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">3. Chứng chỉ</span>
-            <span class="btn-secondary-title">Tải chứng chỉ tin cậy Locket Gold HN</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span>.crt</span>
-            <span class="btn-secondary-icon">🔏</span>
-          </div>
-        </a>
-      </div>
+        <p class="helper-text">
+          Nếu iPhone hỏi <strong>"Cho phép tải cấu hình / chứng chỉ?"</strong>, hãy chọn <strong>Cho phép</strong> → vào
+          <strong>Cài đặt &gt; Đã tải về hồ sơ</strong> để cài đặt hoàn tất.
+        </p>
+      </section>
 
       <!-- Quà tặng -->
-      <div class="section-label">Quà tặng khi mua Locket Gold</div>
+      <section class="section">
+        <h2>
+          Quà tặng khi mua Locket Gold
+          <span>Chặn quảng cáo hệ thống</span>
+        </h2>
+        <p>
+          Tặng kèm cấu hình <strong>chặn quảng cáo</strong> toàn hệ thống cho iPhone
+          (Safari, ứng dụng, v.v.) khi hoàn tất nâng cấp Locket Gold.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-danger"
+             href="https://webhoangnam.id.vn/chanquangcao.mobileconfig"
+             target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">🎁</span>
+            <span>Nhận quà tặng chặn quảng cáo</span>
+          </a>
+        </div>
+        <p class="helper-text">
+          Sau khi cài, vào <strong>Cài đặt &gt; VPN &amp; Quản lý cấu hình</strong> để kiểm tra cấu hình đã được kích hoạt.
+        </p>
+      </section>
 
-      <div class="btn-group">
-        <a class="btn-secondary" href="https://webhoangnam.id.vn/chanquangcao.mobileconfig">
-          <div class="btn-secondary-main">
-            <span class="btn-secondary-label">Gift</span>
-            <span class="btn-secondary-title">Cấu hình chặn quảng cáo Safari / hệ thống</span>
-          </div>
-          <div class="btn-secondary-right">
-            <span>.mobileconfig</span>
-            <span class="btn-secondary-icon">🎁</span>
-          </div>
-        </a>
+      <div class="footer">
+        Mọi thắc mắc trong quá trình cài đặt, cứ nhắn trực tiếp cho Nam để được hỗ trợ từ xa.
       </div>
-
-      <p class="tiny">
-        Lưu ý: Tất cả thao tác nên thực hiện trong Safari trên iPhone để cài cấu hình &amp; chứng chỉ thành công.
-      </p>
     </main>
   </div>
 
+  <!-- Toast sao chép -->
+  <div class="toast" id="toast">
+    <span class="toast-dot"></span>
+    <span id="toastText">Đã sao chép.</span>
+  </div>
+
   <script>
-    // Tạo hiệu ứng tuyết rơi (chấm trắng rơi nền)
+    // Tạo tuyết rơi
     (function createSnow(){
+      const snowContainer = document.getElementById('snow');
       const count = 80;
       for(let i=0;i<count;i++){
-        const s = document.createElement('div');
-        s.className = 'snowflake';
-        const size = Math.random()*4+2;
-        s.style.width = size+'px';
-        s.style.height = size+'px';
-        s.style.left = Math.random()*100+'vw';
-        s.style.opacity = (Math.random()*0.5+0.4).toFixed(2);
-        const duration = Math.random()*12+8; // 8-20s
-        const delay = Math.random()*-20;
-        s.style.animationDuration = duration+'s';
-        s.style.animationDelay = delay+'s';
-        document.body.appendChild(s);
+        const span = document.createElement('span');
+        span.className='snowflake';
+        span.textContent='•';
+        const startX = Math.random()*100;
+        const endX = startX + (Math.random()*20-10);
+        const duration = 8 + Math.random()*7; // 8-15s
+        const delay = Math.random()*-15;
+        span.style.left = startX + 'vw';
+        span.style.setProperty('--x-start', startX + 'vw');
+        span.style.setProperty('--x-end', endX + 'vw');
+        span.style.animationDuration = duration + 's';
+        span.style.animationDelay = delay + 's';
+        span.style.opacity = (0.35 + Math.random()*0.6).toFixed(2);
+        span.style.fontSize = (6 + Math.random()*6) + 'px';
+        snowContainer.appendChild(span);
       }
     })();
 
-    // Phát hiện mở từ ứng dụng Messenger / Facebook in-app
-    function isMessengerInApp(){
-      const ua = navigator.userAgent || '';
-      return ua.includes('FBAN') || ua.includes('FBAV') || ua.toLowerCase().includes('messenger');
+    // Toast
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toastText');
+    let toastTimeout;
+
+    function showToast(text){
+      toastText.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(()=>{
+        toast.classList.remove('show');
+      },2000);
     }
 
-    document.addEventListener('DOMContentLoaded', function(){
-      // Hiển thị cảnh báo Messenger
-      const warn = document.getElementById('messengerWarning');
-      if(isMessengerInApp() && warn){
-        warn.classList.remove('hidden');
+    // Sao chép tài khoản & mật khẩu
+    document.addEventListener('click', async (e)=>{
+      const btn = e.target.closest('[data-copy]');
+      if(!btn) return;
+      const value = btn.getAttribute('data-copy');
+      try{
+        await navigator.clipboard.writeText(value);
+        showToast('Đã sao chép: ' + value);
+      }catch(err){
+        showToast('Không sao chép được, hãy thử giữ để chọn & copy tay.');
       }
+    });
 
-      // Nút "Mở bằng Safari"
-      const safariBtn = document.getElementById('openSafariBtn');
-      if(safariBtn){
-        safariBtn.addEventListener('click', function(){
-          // Cách tốt nhất: mở lại chính URL này – user có thể chọn mở bằng Safari
-          try{
-            window.location.href = window.location.href;
-          }catch(e){}
-        });
+    // Phát hiện mở trong Messenger
+    (function detectMessenger(){
+      const ua = navigator.userAgent || '';
+      const isMessenger =
+        ua.includes('FBAN') ||
+        ua.includes('FBAV') ||
+        ua.includes('FB_IAB') ||
+        ua.toLowerCase().includes('messenger');
+
+      const overlay = document.getElementById('messengerOverlay');
+      if(isMessenger && overlay){
+        overlay.style.display = 'flex';
       }
+    })();
 
-      // Xử lý sao chép tài khoản & mật khẩu
-      const copyButtons = document.querySelectorAll('.copy-btn');
-      copyButtons.forEach(btn=>{
-        btn.addEventListener('click', async function(){
-          const targetId = this.getAttribute('data-copy-target');
-          const el = document.getElementById(targetId);
-          if(!el) return;
-          const text = el.innerText.trim();
-          try{
-            if(navigator.clipboard && navigator.clipboard.writeText){
-              await navigator.clipboard.writeText(text);
-            }else{
-              const ta = document.createElement('textarea');
-              ta.value = text;
-              ta.style.position='fixed';
-              ta.style.opacity='0';
-              document.body.appendChild(ta);
-              ta.select();
-              document.execCommand('copy');
-              document.body.removeChild(ta);
-            }
-            this.innerHTML = '<span class="icon">✅</span><span>Đã sao chép</span>';
-            setTimeout(()=>{
-              this.innerHTML = '<span class="icon">📋</span><span>Sao chép</span>';
-            },1500);
-          }catch(e){
-            this.innerHTML = '<span class="icon">❌</span><span>Lỗi sao chép</span>';
-            setTimeout(()=>{
-              this.innerHTML = '<span class="icon">📋</span><span>Sao chép</span>';
-            },1500);
-          }
-        });
-      });
+    // Nút "Mở bằng Safari" – thử mở tab mới (trên iOS có thể bật Safari)
+    document.getElementById('openSafariBtn').addEventListener('click', ()=>{
+      try{
+        window.open(window.location.href, '_blank');
+      }catch(e){}
+      showToast('Nếu chưa tự mở Safari, hãy làm theo hướng dẫn phía trên nhé.');
     });
   </script>
 </body>
